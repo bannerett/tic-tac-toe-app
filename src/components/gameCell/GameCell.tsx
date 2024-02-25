@@ -23,7 +23,7 @@ function GameCell({ index }: { index: number }) {
         color={(!value && 'inherit') || (value === 'x' && 'info') || (value === 'o' && 'warning') || undefined}
         onClick={handleClick}
       >
-        <Typography sx={{ fontSize: '9rem', fontFamily: 'Arial, sans-serif' }}>{value}</Typography>
+        <Typography sx={{ fontSize: { xs: '6rem', md: '9rem' }, fontFamily: 'Arial, sans-serif' }}>{value}</Typography>
       </Button>
     </Grid>
   );
