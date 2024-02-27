@@ -14,9 +14,9 @@ const manifest: Partial<VitePWAOptions> = {
     theme_color: '#000000',
     background_color: '#ffffff',
     icons: [
-      { src: '/favicon.ico', sizes: '192x192', type: 'image/png', purpose: 'favicon' },
-      { src: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png', purpose: 'favicon' },
-      { src: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'favicon' },
+      { src: '/favicon.ico', sizes: '192x192', type: 'image/png', purpose: 'any' },
+      { src: '/android-chrome-192x192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+      { src: '/android-chrome-512x512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
       {
         src: '/apple-touch-icon.png',
         sizes: '180x180',
@@ -27,7 +27,7 @@ const manifest: Partial<VitePWAOptions> = {
         src: '/maskable_icon.png',
         sizes: '512x512',
         type: 'image/png',
-        purpose: 'maskable icon',
+        purpose: 'maskable',
       },
     ],
     scope: '/',
