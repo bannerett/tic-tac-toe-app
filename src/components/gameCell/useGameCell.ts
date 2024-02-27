@@ -5,17 +5,17 @@ import {
   selectSelection,
   selectUserTurn,
   setSelection,
-  setTurn,
   startGame,
 } from '~/state/slices/game.slice.ts';
 import { useAppDispatch, useAppSelector } from '~/state/store.hooks.ts';
+import { Fill } from '~/types/player.ts';
 
 export default function useGameCell(index: number) {
   const dispatch = useAppDispatch();
   const user = useAppSelector(selectUserTurn);
   const isStart = useAppSelector(selectGameStart);
   const isSelected = useAppSelector(selectSelection).flat().includes(index);
-  const [value, setValue] = useState<string | null>(null);
+  const [value, setValue] = useState<Fill | null>(null);
 
   useEffect(() => {
     if (!isStart) {
@@ -32,7 +32,7 @@ export default function useGameCell(index: number) {
     }
     setValue(user.fill);
     dispatch(setSelection({ id: user.id, cell: index }));
-    dispatch(setTurn(user.id === 0 ? 1 : 0));
+    // dispatch(setTurn(user.id === 0 ? 1 : 0));
   };
 
   return { value, handleClick, isSelected };

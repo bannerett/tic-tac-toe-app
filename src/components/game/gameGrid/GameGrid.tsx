@@ -1,16 +1,14 @@
-import { SxProps } from '@mui/material';
 import Grid from '@mui/material/Grid';
 
+import useGameGrid from '~/components/game/gameGrid/useGameGrid.ts';
 import GameCell from '~/components/gameCell/GameCell.tsx';
-import { Player } from '~/types/player.ts';
-
-type GameGridProps = { winner?: Player; drawLine: () => SxProps };
 
 const gameCells = Array(9)
   .fill('cell')
   .map((_, index) => index);
 
-function GameGrid({ winner, drawLine }: GameGridProps) {
+function GameGrid() {
+  const { winner, drawLine } = useGameGrid();
   return (
     <Grid
       container

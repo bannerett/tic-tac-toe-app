@@ -1,16 +1,16 @@
 import Box from '@mui/material/Box';
 
 import GameDialog from '~/components/game/GameDialog.tsx';
-import GameGrid from '~/components/game/GameGrid.tsx';
+import GameGrid from '~/components/game/gameGrid/GameGrid.tsx';
 import useGame from '~/components/game/useGame.ts';
 
 function Game() {
-  const { winner, draw, handleNewGame, drawLine } = useGame();
+  const { handleNewGame } = useGame();
 
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-      <GameGrid winner={winner} drawLine={drawLine} />
-      <GameDialog winner={winner} draw={draw} onClose={handleNewGame} />
+      <GameGrid />
+      <GameDialog onClose={handleNewGame} />
     </Box>
   );
 }
