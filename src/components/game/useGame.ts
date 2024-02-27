@@ -1,8 +1,6 @@
-import { shallowEqual } from 'react-redux';
-
 import { SxProps } from '@mui/material';
 
-import { endGame, selectDraw, selectSelection, selectWinner } from '~/state/slices/game.slice.ts';
+import { endGame, selectCombo, selectDraw, selectWinner } from '~/state/slices/game.slice.ts';
 import { useAppDispatch, useAppSelector } from '~/state/store.hooks.ts';
 import { Combo } from '~/types/combo.ts';
 
@@ -10,8 +8,7 @@ export default function useGame() {
   const dispatch = useAppDispatch();
   const winner = useAppSelector(selectWinner);
   const draw = useAppSelector(selectDraw);
-  const [playerSelection1, playerSelection2] = useAppSelector(selectSelection);
-
+  const combo = useAppSelector(selectCombo);
   const handleNewGame = () => {
     dispatch(endGame());
   };
@@ -25,30 +22,14 @@ export default function useGame() {
       background: 'red',
       zIndex: 2,
     };
-    const isFirstDiagonal =
-      shallowEqual(playerSelection1, JSON.parse(Combo.FIRST_DIAGONAL)) ||
-      shallowEqual(playerSelection2, JSON.parse(Combo.FIRST_DIAGONAL));
-    const isSecondDiagonal =
-      shallowEqual(playerSelection1, JSON.parse(Combo.SECOND_DIAGONAL)) ||
-      shallowEqual(playerSelection2, JSON.parse(Combo.SECOND_DIAGONAL));
-    const isFirstRow =
-      shallowEqual(playerSelection1, JSON.parse(Combo.FIRST_ROW)) ||
-      shallowEqual(playerSelection2, JSON.parse(Combo.FIRST_ROW));
-    const isSecondRow =
-      shallowEqual(playerSelection1, JSON.parse(Combo.SECOND_ROW)) ||
-      shallowEqual(playerSelection2, JSON.parse(Combo.SECOND_ROW));
-    const isThirdRow =
-      shallowEqual(playerSelection1, JSON.parse(Combo.THIRD_ROW)) ||
-      shallowEqual(playerSelection2, JSON.parse(Combo.THIRD_ROW));
-    const isFirstColumn =
-      shallowEqual(playerSelection1, JSON.parse(Combo.FIRST_COLUMN)) ||
-      shallowEqual(playerSelection2, JSON.parse(Combo.FIRST_COLUMN));
-    const isSecondColumn =
-      shallowEqual(playerSelection1, JSON.parse(Combo.SECOND_COLUMN)) ||
-      shallowEqual(playerSelection2, JSON.parse(Combo.SECOND_COLUMN));
-    const isThirdColumn =
-      shallowEqual(playerSelection1, JSON.parse(Combo.THIRD_COLUMN)) ||
-      shallowEqual(playerSelection2, JSON.parse(Combo.THIRD_COLUMN));
+    const isFirstDiagonal = combo === Combo.FIRST_DIAGONAL;
+    const isSecondDiagonal = combo === Combo.SECOND_DIAGONAL;
+    const isFirstRow = combo === Combo.FIRST_ROW;
+    const isSecondRow = combo === Combo.SECOND_ROW;
+    const isThirdRow = combo === Combo.THIRD_ROW;
+    const isFirstColumn = combo === Combo.FIRST_COLUMN;
+    const isSecondColumn = combo === Combo.SECOND_COLUMN;
+    const isThirdColumn = combo === Combo.THIRD_COLUMN;
     const transition = (tr: 'width' | 'height') => `${tr} 750ms ease-in-out`;
 
     if (isFirstDiagonal) {

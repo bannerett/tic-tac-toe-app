@@ -11,6 +11,7 @@ type GameState = {
   winner: number | null;
   selection: Record<number, number[]>;
   players: [Player, Player];
+  combo: Combo | null;
 };
 
 const initialState: GameState = {
@@ -22,6 +23,7 @@ const initialState: GameState = {
     { id: 1, fill: 'o', name: 'Player 2' },
   ],
   selection: { 0: [], 1: [] },
+  combo: null,
 };
 
 export const gameSlice = createSlice({
@@ -50,10 +52,11 @@ export const gameSlice = createSlice({
 
       const win = Object.values(Combo)
         .map((combo) => JSON.parse(combo) as number[])
-        .some((combo) => combo.every((comboCell) => state.selection[id].includes(comboCell)));
+        .find((combo) => combo.every((comboCell) => state.selection[id].includes(comboCell)));
 
       if (win) {
         state.winner = id;
+        state.combo = JSON.stringify(win) as Combo;
       }
     },
   },
@@ -78,3 +81,5 @@ export const selectDraw = createDraftSafeSelector(
 );
 
 export const selectSelection = createDraftSafeSelector(selectGameState, ({ selection }) => Object.values(selection));
+
+export const selectCombo = createDraftSafeSelector(selectGameState, ({ combo }) => combo);
