@@ -14,4 +14,4 @@ Player vs CPU should be set up.
 1. Players - usernames and fill (X or O) selection?
 2. Animations?
 3. Score count?
-4. Update app icon
+4. Update app icon ✔
