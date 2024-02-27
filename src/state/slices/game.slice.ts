@@ -38,6 +38,7 @@ export const gameSlice = createSlice({
       state.turn = 0;
       state.winner = null;
       state.selection = { 0: [], 1: [] };
+      state.combo = null;
     },
     setTurn(state, { payload }: PayloadAction<number>) {
       state.turn = payload;
