@@ -7,7 +7,7 @@ import MuiProvider from '~/providers/MuiProvider.tsx';
 import { store } from '~/state/store.ts';
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').then((registration) => {
+  navigator.serviceWorker.register('/service-worker.js').then((registration) => {
     console.log('Service Worker registration', registration);
   });
 }
