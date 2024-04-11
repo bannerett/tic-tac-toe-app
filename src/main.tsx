@@ -6,6 +6,12 @@ import App from '~/App.tsx';
 import MuiProvider from '~/providers/MuiProvider.tsx';
 import { store } from '~/state/store.ts';
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then((registration) => {
+    console.log('Service Worker registration', registration);
+  });
+}
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
